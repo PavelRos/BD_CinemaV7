@@ -1,0 +1,100 @@
+﻿@model BD_CinemaV7.Models.film
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы действительно хотите удалить этот фильм?</h3>
+<div>
+    <h4>Фильм</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Название фильма
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.film_name)
+        </dd>
+        <dt>
+            Возрастной рейтинг
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.age_rating)
+        </dd>
+        <dt>
+            Жанры
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.style)
+        </dd>
+        <dt>
+            Страна
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+
+        <dt>
+            Бюджет
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.budget)
+        </dd>
+
+
+
+        <dt>
+            Дата выхода
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.release_date)
+        </dd>
+
+
+
+        <dt>
+            Длительность
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.duration)
+        </dd>
+
+        <dt>
+            Дистрибьютор
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.distributor)
+        </dd>
+
+        <dt>
+            Режиссёр
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.regisseur)
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Назад", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,97 @@
+﻿@model BD_CinemaV7.Models.film
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Подробности</h2>
+
+<div>
+    <h4>Фильм</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Название фильма
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.film_name)
+        </dd>
+        <dt>
+            Возрастной рейтинг
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.age_rating)
+        </dd>
+        <dt>
+            Жанры
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.style)
+        </dd>
+        <dt>
+            Страна
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+
+        <dt>
+            Бюджет
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.budget)
+        </dd>
+
+
+
+        <dt>
+            Дата выхода
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.release_date)
+        </dd>
+
+
+
+        <dt>
+            Длительность
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.duration)
+        </dd>
+
+        <dt>
+            Дистрибьютор
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.distributor)
+        </dd>
+
+        <dt>
+            Режиссёр
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.regisseur)
+        </dd>
+
+
+
+    </dl>
+</div>
+<p>
+    @if (User.IsInRole("admin"))
+    {
+        @Html.ActionLink("Изменить", "Edit", new { id = Model.Id }) 
+    }
+    @Html.ActionLink("Назад", "Index")
+</p>

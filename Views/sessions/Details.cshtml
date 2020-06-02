@@ -1,0 +1,65 @@
+﻿@model BD_CinemaV7.Models.sessions
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Подробности</h2>
+
+<div>
+    <h4>Сеансы</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Название фильма
+        </dt>
+
+        <dd>
+            @ViewBag.film_name
+        </dd>
+
+        <dt>
+            Название зала
+        </dt>
+
+        <dd>
+            @ViewBag.hall_name
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date_of_session)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_of_session)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.time_of_session)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.time_of_session)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price_of_tickets)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price_of_tickets)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @if (User.IsInRole("admin"))
+    {
+        @Html.ActionLink("Изменить ", "Edit", new { id = Model.Id }) 
+    }
+    @Html.ActionLink("Назад", "Index") |
+    @Html.RouteLink("Места", new { controller = "places", action = "Index_Hall", id = Model.Id }, new { id = "place", @class = "link" })
+
+</p>

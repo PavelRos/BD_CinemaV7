@@ -1,0 +1,93 @@
+﻿@model IEnumerable<BD_CinemaV7.Models.places>
+
+@{
+    ViewBag.Title = "Index_Hall";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Места</h2>
+
+@if (User.IsInRole("admin"))
+{
+    @Html.ActionLink("Отобразить проданные билеты", "Index")
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.sessions.hall.hall_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sessions.date_of_session)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sessions.time_of_session)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.number_of_row)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.number_of_seat_in_a_row)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_of_operation)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @ViewBag.Hall
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sessions.date_of_session)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sessions.time_of_session)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.number_of_row)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.number_of_seat_in_a_row)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.status)
+            </td>
+            @if (item.status == "Куплено")
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.date_of_operation)
+                </td>
+            }
+            else
+            {
+                <td>
+                    Свободно
+                </td>
+            }
+            <td>
+                @Html.ActionLink("Подробности ", "Details", new { id = item.Id }) |
+                @if (item.status == "Свободно")
+                {
+                    string start_ses=item.sessions.date_of_session+" "+item.sessions.time_of_session;
+                    if (DateTime.Now <= DateTime.Parse(start_ses))
+                    {
+                    @Html.ActionLink("Купить билет ", "BuyTicket", new { id = item.Id })
+                    }
+                }
+                <p>
+
+                    @Html.ActionLink("Назад ", "Index", "sessions")
+                </p>
+
+            </td>
+        </tr>
+    }
+
+</table>

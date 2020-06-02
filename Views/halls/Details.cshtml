@@ -1,0 +1,61 @@
+﻿@model BD_CinemaV7.Models.hall
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Информация о выбранном зале</title>
+</head>
+<body>
+    <div>
+        <h4>Зал</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.LabelFor(model => model.hall_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.hall_name)
+            </dd>
+
+            <dt>
+                @Html.LabelFor(model => model.type, htmlAttributes: new { @class = "control-label col-md-2" })
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.type)
+            </dd>
+
+            <dt>
+                @Html.LabelFor(model => model.number_of_rows, htmlAttributes: new { @class = "control-label col-md-2" })
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.number_of_rows)
+            </dd>
+
+            <dt>
+                @Html.LabelFor(model => model.number_of_seats_in_a_row, htmlAttributes: new { @class = "control-label col-md-2" })
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.number_of_seats_in_a_row)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @if (User.IsInRole("admin"))
+        {
+            @Html.ActionLink("Изменить ", "Edit", new { id = Model.Id })
+        }
+        @Html.ActionLink("Назад", "Index")
+    </p>
+</body>
+</html>

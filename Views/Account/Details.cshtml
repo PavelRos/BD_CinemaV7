@@ -1,0 +1,63 @@
+﻿@model BD_CinemaV7.Models.User
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Данные пользователя</h2>
+
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user_surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user_surname)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.user_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user_otc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user_otc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Редактировать данные профиля", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Изменить пароль", "ChangePassword")
+</p>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

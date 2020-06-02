@@ -1,0 +1,72 @@
+﻿@model IEnumerable<BD_CinemaV7.Models.hall>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Таблица залов</title>
+</head>
+<body>
+    <p>
+        @if (User.IsInRole("admin"))
+        {
+            @Html.ActionLink("Создать", "Create")
+        }
+        </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.hall_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.number_of_rows)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.number_of_seats_in_a_row)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.hall_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.number_of_rows)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.number_of_seats_in_a_row)
+        </td>
+        <td>
+            @if (User.IsInRole("admin"))
+            {
+                @Html.ActionLink("Изменить ", "Edit", new { id = item.Id })
+                @Html.ActionLink("Подробности ", "Details", new { id = item.Id })
+                @Html.ActionLink("Удалить ", "Delete", new { id = item.Id })
+            }
+            else
+            {
+                @Html.ActionLink("Подробности", "Details", new { id = item.Id })
+
+            }
+        </td>
+       
+    </tr>
+        }
+
+    </table>
+</body>
+</html>

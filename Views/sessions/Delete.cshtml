@@ -1,0 +1,68 @@
+﻿@model BD_CinemaV7.Models.sessions
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы действительно хотите удалить данный сеанс?</h3>
+<div>
+    <h4>Сеанс</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Название фильма
+        </dt>
+
+        <dd>
+            @ViewBag.film_name
+        </dd>
+
+        <dt>
+            Название зала
+        </dt>
+
+        <dd>
+            @ViewBag.hall_name
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date_of_session)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_of_session)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.time_of_session)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.time_of_session)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price_of_tickets)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price_of_tickets)
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Назад", "Index")
+        </div>
+    }
+</div>

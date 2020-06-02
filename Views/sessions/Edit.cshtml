@@ -1,0 +1,77 @@
+﻿@model BD_CinemaV7.Models.sessions
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Редактирование</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Сеансы</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+    <div class="form-group">
+        @Html.LabelFor(model => model.film.film_name, "Название фильма", htmlAttributes: new { @class = "form-control" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.filmId, ViewBag.films as SelectList)
+            @Html.ValidationMessageFor(model => model.hallId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.hall.hall_name, "Название зала", htmlAttributes: new { @class = "form-control" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.hallId, ViewBag.halls as SelectList)
+            @Html.ValidationMessageFor(model => model.hallId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.date_of_session, "Дата сеанса", htmlAttributes: new { @class = "form-control" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.date_of_session, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.date_of_session, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.time_of_session, "Время сеанса", htmlAttributes: new { @class = "form-control" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.time_of_session, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.time_of_session, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.price_of_tickets, "Цена билетов, руб", htmlAttributes: new { @class = "form-control" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.price_of_tickets, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.price_of_tickets, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Сохранить" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Назад", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

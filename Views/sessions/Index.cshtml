@@ -1,0 +1,74 @@
+﻿@model IEnumerable<BD_CinemaV7.Models.sessions>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Таблица сеансов </h2>
+
+<p>
+    @if (User.IsInRole("admin"))
+    {
+        @Html.ActionLink("Создать", "Create")
+    }
+    </p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.film.film_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hall.hall_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_of_session)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.time_of_session)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price_of_tickets)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.film.film_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hall.hall_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date_of_session)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.time_of_session)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.price_of_tickets)
+            </td>
+            <td>
+                @if (User.IsInRole("admin"))
+                {
+                    @Html.ActionLink("Изменить ", "Edit", new { id = item.Id })
+                    @Html.ActionLink("Подробности ", "Details", new { id = item.Id })
+                    @Html.ActionLink("Удалить ", "Delete", new { id = item.Id })
+                    @Html.RouteLink("Места ", new { controller = "places", action = "Index_Hall", id = item.Id }, new { id = "place", @class = "link" })
+                }
+                else
+                {
+                    @Html.ActionLink("Подробности ", "Details", new { id = item.Id })
+                    @Html.RouteLink("Места ", new { controller = "places", action = "Index_Hall", id = item.Id }, new { id = "place", @class = "link" })
+
+                }
+               
+            </td>
+
+    </tr>
+    }
+
+</table>

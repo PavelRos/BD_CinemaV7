@@ -1,0 +1,103 @@
+﻿@model IEnumerable<BD_CinemaV7.Models.film>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Фильмы</h2>
+
+<p>
+    @if (User.IsInRole("admin"))
+    {
+        @Html.ActionLink("Создать", "Create")
+    }
+    </p>
+<table class="table">
+    <tr>
+        <th>
+            Название фильма
+        </th>
+        <th>
+            Возрастной рейтинг
+        </th>
+        <th>
+            Жанры
+        </th>
+        <th>
+            Страна
+        </th>
+        <th>
+            Бюджет
+        </th>
+
+        <th>
+            Дата выхода
+        </th>
+
+        <th>
+            Длительность
+        </th>
+        <th>
+            Дистрибьютор
+        </th>
+        <th>
+            Режиссёр
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.film_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.age_rating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.style)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.budget)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.release_date)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.distributor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.regisseur)
+            </td>
+
+            <td>
+
+            <td>
+                @if (User.IsInRole("admin"))
+                {
+                    @Html.ActionLink("Изменить ", "Edit", new { id = item.Id })
+                    @Html.ActionLink("Подробности ", "Details", new { id = item.Id })
+                    @Html.ActionLink("Удалить ", "Delete", new { id = item.Id })
+                }
+                else
+                {
+                    @Html.ActionLink("Подробности", "Details", new { id = item.Id })
+
+                }
+            </td>
+
+        </tr>
+    }
+
+</table>

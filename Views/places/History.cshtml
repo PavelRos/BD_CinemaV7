@@ -1,0 +1,65 @@
+﻿@model IEnumerable<BD_CinemaV7.Models.places>
+
+@{
+    ViewBag.Title = "History";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>История покупок</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.sessions.hall.hall_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sessions.film.film_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sessions.date_of_session)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.number_of_row)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.number_of_seat_in_a_row)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_of_operation)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.sessions.hall.hall_name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.sessions.film.film_name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.sessions.date_of_session)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.number_of_row)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.number_of_seat_in_a_row)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.status)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.date_of_operation)
+    </td>
+
+</tr>
+}
+
+</table>

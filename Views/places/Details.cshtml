@@ -1,0 +1,81 @@
+﻿@model BD_CinemaV7.Models.places
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Подробности</h2>
+
+<div>
+    <h4>Место</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.sessions.hall.hall_name)
+        </dt>
+        <dd>
+            @ViewBag.Hall
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.sessions.date_of_session)
+        </dt>
+
+        <dd>
+            @ViewBag.SesStartDate
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.sessions.time_of_session)
+        </dt>
+
+        <dd>
+            @ViewBag.SesStartTime
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.number_of_row)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.number_of_row)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.number_of_seat_in_a_row)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.number_of_seat_in_a_row)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date_of_operation)
+        </dt>
+        @if (Model.status == "Куплено")
+        {
+            <dd>
+                @Html.DisplayFor(model => model.date_of_operation)
+            </dd>
+        }
+        else
+        {
+            <dd>
+                Свободно
+            </dd>
+        }
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Назад", "Index", "sessions")
+</p>

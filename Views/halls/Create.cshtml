@@ -1,0 +1,74 @@
+﻿@model BD_CinemaV7.Models.hall
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Добавление</title>
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Зал</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="form-group">
+                Название зала
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.hall_name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.hall_name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                Тип зала
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.type, ViewBag.types as SelectList)
+                    @Html.ValidationMessageFor(model => model.type, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                Количество рядов
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.number_of_rows, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.number_of_rows, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                Количество мест в ряду
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.number_of_seats_in_a_row, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.number_of_seats_in_a_row, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Добавить" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Назад", "Index")
+    </div>
+</body>
+</html>
